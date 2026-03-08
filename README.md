@@ -8,6 +8,10 @@ This repository is the official implementation of the research on enhancing anti
 ## Overview
 Predicting the binding sites of antibodies (paratopes) and antigens (epitopes) is a fundamental task in therapeutic discovery. **SemiPEP** addresses the data bottleneck by utilizing a dual-model interaction framework that progressively learns from unlabeled data through high-confidence pseudo-labeling.
 
+<p align="center">
+  <img src="./figures/framework.png">
+</p>
+
 ### Key Innovations:
 * **Combined Confidence Estimation**: Integrates global graph-level features with **k-hop subgraph-based local confidence** to rigorously evaluate the reliability of pseudo-labels.
 * **Adaptive Percentile-based Thresholding**: Instead of using a static threshold, it employs a dynamic percentile scheduling strategy ($p_{min}$ to $p_{max}$) to progressively incorporate high-quality pseudo-labels.
@@ -17,6 +21,9 @@ Predicting the binding sites of antibodies (paratopes) and antigens (epitopes) i
 The framework consists of two interacting components:
 1.  **Target Model ($f$)**: A GAT-based encoder that extracts structural features and models interactions via Cross-Attention to predict binding probabilities.
 2.  **Instructor Model ($g$)**: An MLP-based model that estimates prediction confidence, utilizing a learnable parameter $\alpha$ to balance global and local structural information.
+<p align="center">
+  <img src="./figures/Target_Model.png">
+</p>
 
 ## Dataset: AsEP (Modified)
 We utilize the **AsEP dataset**, the most comprehensive benchmark for antibody-specific epitope prediction.
@@ -62,4 +69,5 @@ python SemiPEP.py --gpu 0 --num_epochs 100 --batch_size 32 --data_path ./data
 
 ## Publication
 - Master's Thesis: [Semi-supervised Learning Framework for Paratope and Epitope Prediction (2025)](https://postech.dcollection.net/public_resource/pdf/200000895760_20260308162818.pdf)
+
 - Conference Paper: [항체 항원 결합부위 예측을 위한 준지도 학습 기법](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12318274)
