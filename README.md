@@ -31,6 +31,15 @@ We utilize the **AsEP dataset**, the most comprehensive benchmark for antibody-s
 * **Modified Pre-processing**: The original dataset loader and pre-processing logic were modified to support the **IgFold** (Antibody) and **ESM-2** (Antigen) embedding integration required for this framework.
 * **Multi-modal Features**: Combines pre-calculated protein language model (PLM) embeddings with one-hot encoded amino acid features.
 
+## Repository Structure
+```
+├── asep/                   # Modified dataset loader and pre-processing scripts for AsEP.
+├── model.py                # Definitions for SemiPEP_Target and SemiPEP_InstructorMLP.
+├── SemiPEP.py              # Main execution script implementing the adaptive thresholding algorithm.
+├── utils.py                # Evaluation utilities for AUROC, AUPRC, and MCC metrics.
+├── requirements.txt
+└── README.md
+```
 
 ## Getting Started
 
@@ -42,7 +51,7 @@ pip install -r requirements.txt
 ```
 
 ### 2. Dataset Setup
-Organize the modified AsEP dataset in the following structure:
+SemiPEP is designed to handle dataset preparation automatically. If the dataset is not present in the specified directory, the framework will initialize the required structure:
 ```
 data/
 └── AsEP/
@@ -57,17 +66,8 @@ The `SemiPEP.py` script handles both pre-training and the main semi-supervised t
 python SemiPEP.py --gpu 0 --num_epochs 100 --batch_size 32 --data_path ./data
 ```
 
-### 📁 Repository Structure
-```
-├── asep/                   # Modified dataset loader and pre-processing scripts for AsEP.
-├── model.py                # Definitions for SemiPEP_Target and SemiPEP_InstructorMLP.
-├── SemiPEP.py              # Main execution script implementing the adaptive thresholding algorithm.
-├── utils.py                # Evaluation utilities for AUROC, AUPRC, and MCC metrics.
-├── requirements.txt
-└── README.md
-```
-
 ## Publication
 - Master's Thesis: [Semi-supervised Learning Framework for Paratope and Epitope Prediction (2025)](https://postech.dcollection.net/public_resource/pdf/200000895760_20260308162818.pdf)
 
 - Conference Paper: [항체 항원 결합부위 예측을 위한 준지도 학습 기법](https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12318274)
+
